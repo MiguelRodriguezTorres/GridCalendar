@@ -27,6 +27,9 @@ struct ContentView: View {
             LazyVGrid(columns: layout, pinnedViews: [.sectionHeaders]) {
                 ForEach(year, id: \.name) { month in
                     Section(header: Text(verbatim: month.name).font(.headline)) {
+//                        ForEach(weekDays.daysOfTheWeek) { weekDay in
+//                            Text("\(weekDay)")
+//                        }
                         ForEach(month.days) { day in
                             Capsule()
                                 .overlay(Text("\(day.value)").foregroundStyle(.white))
@@ -75,6 +78,14 @@ let year = [
     Month(name: "November", numberOfDays: 30),
     Month(name: "December", numberOfDays: 31),
 ]
+
+// days of the week
+struct DaysOfTheWeek: Identifiable {
+    let id = UUID()
+    let daysOfTheWeek = ["S", "M", "T", "W", "T", "F", "S"]
+}
+
+let weekDays = DaysOfTheWeek()
 
 #Preview {
     ContentView()
